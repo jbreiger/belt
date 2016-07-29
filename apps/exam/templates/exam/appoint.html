@@ -1,0 +1,68 @@
+<html>
+<head>
+	<title>Appointments</title>
+</head>
+<body>
+<p> <a href='logout' method='post'> Logout </a> </p>	
+<h1> Hi {{users.name}} </h1>
+<h4> Here are your appointments for today {{today}} </h4> 
+<table>
+	<thead>
+		<tr> 
+			<td> Tasks </td>
+			<td> Time </td>
+			<td>  Status </td>
+			<td> Action </td>
+		 </tr>
+	</thead>
+		<tr>
+			{%for x in todays%}
+			<td> {{x.tasks}} </td>
+			<td> {{x.time}} </td>
+			<td> {{x.status}} </td>
+			<td> {{x.id}} </td>
+			<td> user id </td>
+			<td> <a href='edit/{{x.id}}'> Edit </a>/ <a href="delete/{{x.id}}"> Delete </a> </td>
+
+<!-- 			<td> {{appoints.date}} </td>
+ -->		</tr>
+ 			{%endfor%}
+
+</table>
+
+
+<h4> Other Appointments </h4>	
+<table>
+<thead>
+	<tr> 
+		<td> Tasks </td>
+		<td> Date </td>
+		<td>  Time </td>
+	 </tr>
+	</thead>
+		<tr>
+			{%for y in appoints%}
+			<td> {{y.tasks}} </td>
+			<td> {{y.date}}	</td>
+			<td> {{y.time}} </td>
+		</tr>
+		{%endfor%}		
+</table>
+
+
+
+<h4> Add Appointment </h4>
+<form action= 'create' method= post>
+	{% csrf_token %}
+	Date:<input type= 'date' name='date' intial="{{today}}">
+	Time:<input type= 'time'	name= 'time'>
+	Tasks:<input type= 'text' name= 'tasks'>
+	<input type= 'submit' value='Add'>
+</form>				 
+{% if messages %}
+			{% for message in messages %}
+				{{message}}
+			{% endfor %}
+		{% endif %}
+</body>
+</html>

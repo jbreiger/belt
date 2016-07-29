@@ -1,0 +1,14 @@
+<html>
+<head>
+	<title>Travels Page</title>
+</head>
+<body>
+<form action='create' method= 'POST'>
+	<a href='add'> Add someone </a>
+	{%for x in trips%}
+		<p> <a href= 'profile' {{x.destination}} </p>
+		<p> {{x.id}} </p>
+		<p> {{request.session.id}} </p>
+	{%endfor%}	
+</body>
+</html>

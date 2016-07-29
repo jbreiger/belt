@@ -1,0 +1,26 @@
+<html>
+<head>
+	<title>Edit appointments</title>
+</head>
+<body>
+	<p> <a href='appoint'> Dashboard </a> | <a href='logout' method='post'> Logout </a> </p>
+<form action='/update/{{id}}' method= 'post'>
+	{% csrf_token %}
+	<p>Tasks: <input type= 'text' name='tasks'> </p>
+	<p>Status:<select name='status'>
+		<option value="Pending">Pending</option>
+ 	 	<option value="Missed">Missed</option>
+  		<option value="Done">Done</option>
+	</select> </p>
+	<p> Date:<input type= 'date' name='date'> </p>
+	<p> Time: <input type='time' name='time'> </p>
+	<!-- <input type='hidden' name='id' value='{{id}}'> -->
+	<input type='submit' value='Update'>
+	{% if messages %}
+			{% for message in messages %}
+				{{message}}
+			{% endfor %}
+		{% endif %}
+</form>	
+</body>
+</html>
